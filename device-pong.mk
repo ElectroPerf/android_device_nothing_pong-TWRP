@@ -56,7 +56,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 AB_OTA_PARTITIONS ?= boot vendor_boot recovery vendor_dlkm dtbo vbmeta super
 
 # A/B related packages
-PRODUCT_PACKAGES += update_engine \
+PRODUCT_PACKAGES += \
+    update_engine \
     update_engine_client \
     update_verifier \
     android.hardware.boot@1.2-impl-qti \
@@ -100,6 +101,11 @@ PRODUCT_PACKAGES += fastbootd
 # Add default implementation of fastboot HAL.
 PRODUCT_PACKAGES += android.hardware.fastboot@1.1-impl-mock
 
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0.vendor \
+    android.system.keystore2
+
 # qcom decryption
 PRODUCT_PACKAGES += \
     qcom_decrypt \
@@ -119,7 +125,6 @@ SOONG_CONFIG_ufsbsg_ufsframework := bsg
 # OEM otacerts
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(DEVICE_PATH)/security/otacert
-
 
 # System AVB
 BOARD_AVB_VBMETA_SYSTEM := system
